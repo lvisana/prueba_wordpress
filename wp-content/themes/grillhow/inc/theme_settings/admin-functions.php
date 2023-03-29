@@ -90,17 +90,40 @@ function grillhow_customize_register( $wp_customize ) {
 
 	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! CONTACT INFO
 
-	$wp_customize->add_setting('gh_address_one');
+	$wp_customize->add_setting('gh_address_one' , array(
+		'type' => 'option',
+		'default' => '2605 Scheuvront Drive, New York, NY 99515',
+		'transport' => 'refresh'
+	));
 	
-	$wp_customize->add_setting('gh_address_two');
+	$wp_customize->add_setting('gh_address_two', array(
+		'type' => 'option',
+		'transport' => 'refresh'
+	));
 
-	$wp_customize->add_setting('gh_email_one');
+	$wp_customize->add_setting('gh_email_one', array(
+		'type' => 'option',
+		'default' => 'info@demolink.org',
+		'transport' => 'refresh'
+	));
 	
-	$wp_customize->add_setting('gh_email_two');
+	$wp_customize->add_setting('gh_email_two', array(
+		'type' => 'option',
+		'default' => 'mail@demolink.org',
+		'transport' => 'refresh'
+	));
 
-	$wp_customize->add_setting('gh_phone_one');
+	$wp_customize->add_setting('gh_phone_one', array(
+		'type' => 'option',
+		'default' => '+ 166 900 891',
+		'transport' => 'refresh'
+	));
 	
-	$wp_customize->add_setting('gh_phone_two');
+	$wp_customize->add_setting('gh_phone_two', array(
+		'type' => 'option',
+		'default' => '+ 166 900 892',
+		'transport' => 'refresh'
+	));
 
 	$wp_customize->add_section('gh_contact_info', array(
 		'title' => __('Contact Info', 'Grill How'),
@@ -131,7 +154,7 @@ function grillhow_customize_register( $wp_customize ) {
 	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'gh_email_control_two', array(
 		'label' => __('Email 2', 'Grill How'),
 		'section' => 'gh_contact_info',
-		'settings' => 'gh_email_one',
+		'settings' => 'gh_email_two',
 		'type' => 'text',
 	) ) );
 
@@ -165,92 +188,52 @@ function grillhow_customize_register( $wp_customize ) {
 		'panel' => 'gh_ophour_panel',
 	));
 
-	$wp_customize->add_setting('gh_opweek_monday', array(
+	$wp_customize->add_setting('gh_opday_from', array(
 		'type' => 'option',
-		'default' => true,
-		'transport' => 'refresh',
-	));
-	$wp_customize->add_setting('gh_opweek_tuesday', array(
-		'type' => 'option',
-		'default' => true,
-		'transport' => 'refresh',
-	));
-	$wp_customize->add_setting('gh_opweek_wednesday', array(
-		'type' => 'option',
-		'default' => true,
-		'transport' => 'refresh',
-	));
-	$wp_customize->add_setting('gh_opweek_thursday', array(
-		'type' => 'option',
-		'default' => true,
-		'transport' => 'refresh',
-	));
-	$wp_customize->add_setting('gh_opweek_friday', array(
-		'type' => 'option',
-		'default' => true,
-		'transport' => 'refresh',
-	));
-	$wp_customize->add_setting('gh_opweek_saturday', array(
-		'type' => 'option',
-		'default' => true,
-		'transport' => 'refresh',
-	));
-	$wp_customize->add_setting('gh_opweek_sunday', array(
-		'type' => 'option',
-		'default' => true,
-		'transport' => 'refresh',
-	));
-	$wp_customize->add_setting('gh_opweek_days', array(
-		'type' => 'option',
-		'default' => true,
+		'title' => __('From'),
+		'default' => 'Mon',
 		'transport' => 'refresh',
 	));
 
-	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'gh_opweek_monday_control', array(
-		'label' => __('Monday', 'mon'),
-		'section' => 'gh_weekdays_section',
-		'settings' => 'gh_opweek_monday',
-		'type' => 'checkbox',
-	) ) );
+	$wp_customize->add_setting('gh_opday_to', array(
+		'type' => 'option',
+		'title' => __('To'),
+		'default' => 'Sun',
+		'transport' => 'refresh',
+	));
 	
-	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'gh_opweek_tuesday_control', array(
-		'label' => __('Tuesday', 'tue'),
-		'section' => 'gh_weekdays_section',
-		'settings' => 'gh_opweek_tuesday',
-		'type' => 'checkbox',
-	) ) );
-	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'gh_opweek_wednesday_control', array(
-		'label' => __('Wednesday', 'wed'),
-		'section' => 'gh_weekdays_section',
-		'settings' => 'gh_opweek_wednesday',
-		'type' => 'checkbox',
-	) ) );
+
+	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'gh_opdays_from_control', array(
+		'type' => 'select',
+            'label' => 'From Day',
+            'section' => 'gh_weekdays_section',
+			'settings' => 'gh_opday_from',
+            'choices' => array(
+                    'Mon' => 'Monday',
+                    'Tue' => 'Tuesday',
+                    'Wed' => 'Wednesday',
+                    'Thurs' => 'Thursday',
+                    'Fri' => 'Friday',
+                    'Sat' => 'Saturday',
+                    'Sun' => 'Sunday',
+                ),
+            ))); 
 	
-	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'gh_opweek_thursday_control', array(
-		'label' => __('Thursday', 'thur'),
-		'section' => 'gh_weekdays_section',
-		'settings' => 'gh_opweek_thursday',
-		'type' => 'checkbox',
-	) ) );
-	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'gh_opweek_friday_control', array(
-		'label' => __('Friday', 'frid'),
-		'section' => 'gh_weekdays_section',
-		'settings' => 'gh_opweek_friday',
-		'type' => 'checkbox',
-	) ) );
-	
-	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'gh_opweek_saturday_control', array(
-		'label' => __('Saturday', 'sat'),
-		'section' => 'gh_weekdays_section',
-		'settings' => 'gh_opweek_saturday',
-		'type' => 'checkbox',
-	) ) );
-	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'gh_opweek_sunday_control', array(
-		'label' => __('Sunday', 'sun'),
-		'section' => 'gh_weekdays_section',
-		'settings' => 'gh_opweek_sunday',
-		'type' => 'checkbox',
-	) ) );
+			$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'gh_opdays_to_control', array(
+				'type' => 'select',
+					'label' => 'To Day',
+					'section' => 'gh_weekdays_section',
+					'settings' => 'gh_opday_to',
+					'choices' => array(
+							'Mon' => 'Monday',
+							'Tue' => 'Tuesday',
+							'Wed' => 'Wednesday',
+							'Thurs' => 'Thursday',
+							'Fri' => 'Friday',
+							'Sat' => 'Saturday',
+							'Sun' => 'Sunday',
+						),
+					))); 
 
 	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! WEEK DAYS
 
@@ -261,13 +244,15 @@ function grillhow_customize_register( $wp_customize ) {
 	));
 
 	$wp_customize->add_setting('gh_ophours_since', array(
-		'default' => '9999-12-12 21:00:00',
-		'transport' => 'refresh',
+		'type' => 'option',
+		'default' => '9999-12-12 8:00:00',
+		'transport'         => 'postMessage',
 	));
 
 	$wp_customize->add_setting('gh_ophours_to', array(
+		'type' => 'option',
 		'default' => '9999-12-12 21:00:00',
-		'transport' => 'refresh',
+		'transport'         => 'postMessage',
 	));
 
 	$wp_customize->add_control( new WP_Customize_Date_Time_Control( $wp_customize, 'gh_ophours_since_control', array(
@@ -287,9 +272,11 @@ function grillhow_customize_register( $wp_customize ) {
 		'twelve_hour_format' => true,
 		'allow_past_date' => false,
 	) ) );
+
 }
 
 add_action('customize_register', 'grillhow_customize_register');
+
 
 // Output Customize CSS
 function grillhow_customize_css() { ?>
@@ -342,19 +329,9 @@ function grillhow_register_sidebars() {
 	 ) );
 
 	 register_sidebar( array(
-		 'name'          => esc_html__( 'Footer Section One', 'ls_grillhow' ),
-		 'id'            => 'footer-section-one',
-		 'description'   => esc_html__( 'Widgets added here would appear inside the first section of the footer', 'ls_grillhow' ),
-		 'before_widget' => '',
-		 'after_widget'  => '',
-		 'before_title'  => '',
-		 'after_title'   => '',
-	 ) );
-
-	 register_sidebar( array(
-		 'name'          => esc_html__( 'Footer Section Two', 'ls_grillhow' ),
-		 'id'            => 'footer-section-two',
-		 'description'   => esc_html__( 'Widgets added here would appear inside the second section of the footer', 'ls_grillhow' ),
+		 'name'          => esc_html__( 'Footer Copyright Section', 'ls_grillhow' ),
+		 'id'            => 'footer-section',
+		 'description'   => esc_html__( 'Widgets added here would appear inside the last section of the footer with copyright information', 'ls_grillhow' ),
 		 'before_widget' => '<p id="copyright" class="d-inline">© '. date('Y') . ', '. get_bloginfo( 'name' ). '. </p>',
 		 'after_widget'  => '',
 		 'before_title'  => '',
@@ -363,3 +340,23 @@ function grillhow_register_sidebars() {
  }
 
  add_action( 'widgets_init', 'grillhow_register_sidebars' );
+
+
+ function add_default_value_to_image_field($field) {
+    acf_render_field_setting( $field, array(
+      'label'      => __('Default Image','acf'),
+      'instructions'  => __('Appears when creating a new post','acf'),
+      'type'      => 'image',
+      'name'      => 'default_value',
+    ));
+  }
+add_action('acf/render_field_settings/type=image', 'add_default_value_to_image_field', 20);
+
+function reset_default_image($value, $post_id, $field) {
+  if (!$value) {
+    $value = $field['default_value'];
+  }
+  return $value;
+}
+
+add_filter('acf/load_value/type=image', 'reset_default_image', 10, 3);

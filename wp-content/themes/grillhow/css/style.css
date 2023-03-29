@@ -73,19 +73,8 @@ footer .logo img {
     padding: 0;
 }
 
-#footer-one p {
-    margin-bottom: 0;
-}
-
-#footer-one #menu-secondary-menu {
-    list-style: none;
+#footer-one #secondary-menu li a {
     padding: 0;
-    margin: 0;
-}
-
-#footer-one #menu-secondary-menu li a {
-    text-decoration: none;
-    color: var(--secondary-dark);
 }
 
 #footer-two #copyright + * {
@@ -134,6 +123,10 @@ footer .logo img {
 #info-section {
     row-gap: 2rem;
 }
+
+.disableInput {
+    pointer-events: none;
+ }
 
 @media (min-width : 992px) {
     .offcanvas {

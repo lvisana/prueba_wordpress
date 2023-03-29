@@ -1,14 +1,35 @@
 <?php
 
-$ophour = [];
+if (get_option('gh_address_one') == false) {
+    update_option('gh_address_one', '2605 Scheuvront Drive, New York, NY 99515');
+}
 
-array_push($ophour, get_option( 'gh_opweek_monday' ) == '1' ? 'Mon' : '');
-array_push($ophour, get_option( 'gh_opweek_tuesday' ) == '1' ? 'Tue' : '');
-array_push($ophour, get_option( 'gh_opweek_wednesday' ) == '1' ? 'Wed' : '');
-array_push($ophour, get_option( 'gh_opweek_thurday' ) == '1' ? 'Thur' : '');
-array_push($ophour, get_option( 'gh_opweek_friday' ) == '1' ? 'Fri' : '');
-array_push($ophour, get_option( 'gh_opweek_saturday' ) == '1' ? 'Sat' : '');
-array_push($ophour, get_option( 'gh_opweek_sunday' ) == '1' ? 'Sun' : '');
+if (get_option('gh_email_one') == false) {
+    update_option('gh_email_one', 'info@demolink.org');
+}
+
+if (get_option('gh_phone_one') == false) {
+    update_option('gh_phone_one', '+ 166 900 891');
+}
+
+if (get_option('gh_opday_from') == false) {
+    update_option('gh_opday_from', 'Mon');
+}
+
+if (get_option('gh_opday_to') == false) {
+    update_option('gh_opday_to', 'Sun');
+}
+
+if (get_option('gh_ophours_since') == false) {
+    update_option('gh_ophours_since', '9999-12-12 8:00:00');
+}
+
+if (get_option('gh_ophours_to') == false) {
+    update_option('gh_ophours_to', '9999-12-12 21:00:00');
+}
+
+$hour_since = date('gA', strtotime(get_option('gh_ophours_since')));
+$hour_to = date('gA', strtotime(get_option('gh_ophours_to')));
 
     ?>
     <section class="container-fluid primary">
@@ -17,25 +38,32 @@ array_push($ophour, get_option( 'gh_opweek_sunday' ) == '1' ? 'Sun' : '');
 
             <div class="col-6 col-lg-3">
                 <h2 class="fs-5 fw-semibold text-uppercase">Address</h2>
-                <p class="m-0">2605 Scheuvront Drive, New York, NY 99515</p>
+                <p class="m-0"> <?php echo get_option('gh_address_one');  ?> </p>
+                <?php if (get_option('gh_address_two')) :  ?>
+                    <p class="m-0"> <?php echo get_option('gh_address_two');  ?> </p>
+                <?php endif;  ?>
             </div>
 
             <div class="col-6 col-lg-3">
                 <h2 class="fs-5 text-uppercase fw-semibold">Opening Hours</h2>
-                <p class="m-0">Mon - Sun</p>
-                <p class="m-0">8am - 9pm</p>
+                <p class="m-0"><?php echo get_option('gh_opday_from') . ' - ' . get_option('gh_opday_to'); ?></p>
+                <p class="m-0 text-lowercase"><?php echo $hour_since . ' - ' . $hour_to; ?></p>
             </div>
 
             <div class="col-6 col-lg-3">
                 <h2 class="fs-5 text-uppercase fw-semibold">Phones</h2>
-                <p class="m-0">+ 166 900 891</p>
-                <p class="m-0">+ 166 900 892</p>
+                <p class="m-0"><?php echo get_option('gh_phone_one');  ?></p>
+                <?php if (get_option('gh_phone_two')) :  ?>
+                    <p class="m-0"> <?php echo get_option('gh_phone_two');  ?> </p>
+                <?php endif;  ?>
             </div>
 
             <div class="col-6 col-lg-3">
                 <h2 class="fs-5 text-uppercase fw-semibold">Emails</h2>
-                <p class="m-0">info@demolink.org</p>
-                <p class="m-0">info@demolink.org</p>
+                <p class="m-0"><?php echo get_option('gh_email_one');  ?></p>
+                <?php if (get_option('gh_email_two')) :  ?>
+                    <p class="m-0"> <?php echo get_option('gh_email_two');  ?> </p>
+                <?php endif;  ?>
             </div>
         </div>
     </div>

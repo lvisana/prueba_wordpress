@@ -20,7 +20,7 @@
     <title><?php wp_title( '|', true, 'right' ); ?></title>
 </head>
 <body <?php body_class(); ?>>
-<?php var_dump(get_theme_mod('gh_ophours_since'))  ?>
+
     <header class="container-fluid secondary-light p-0" <?php header_image(); ?>>
             <nav class="navbar navbar-expand-lg">
                 <div class="container-xxl py-1 px-2 px-lg-5">
